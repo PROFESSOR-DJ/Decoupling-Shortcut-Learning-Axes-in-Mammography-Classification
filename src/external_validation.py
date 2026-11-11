@@ -1,4 +1,4 @@
-"""INbreast (and optional VinDr-Mammo / EMBED) metadata, DICOM reading and image cache,
+"""INbreast metadata, DICOM reading and image cache,
 plus the external-dataset version of the main sweep.
 """
 
