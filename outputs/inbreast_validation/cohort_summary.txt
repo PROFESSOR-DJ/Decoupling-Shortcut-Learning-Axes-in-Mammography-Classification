@@ -1,0 +1,25 @@
+INbreast usable images/cases : 192
+Distinct patients            : 102
+Malignant / benign           : 50 / 142
+Density binary (>=3 dense)   : dense 57 / not dense 135
+Natural point-biserial r (malignant vs density_binary) = -0.022
+Acquisition                  : full-field DIGITAL mammography (not digitized film)
+
+BI-RADS/ACR density x outcome:
+malignant  benign  malignant
+density                     
+1.0            48         16
+2.0            51         20
+3.0            34         12
+4.0             9          2
+
+Per-seed split sizes after the r~0.6 subsampling (mean over seeds):
+n_train_before          104.4
+n_train_used             72.2
+r_train                   0.5
+n_val                    27.9
+n_test                   59.7
+n_aligned                34.2
+n_conflict               25.5
+n_conflict_malignant     10.9
+n_conflict_benign        14.5

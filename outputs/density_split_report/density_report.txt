@@ -1,0 +1,114 @@
+
+R1.5  DENSITY-SPLIT AND BI-RADS REPORT
+generated 2026-10-26T16:04:33.675029+00:00
+cohort: 3568 usable images, 1566 unique patient_id
+
+==============================================================================
+1. THE MEDIAN SPLIT ITSELF
+==============================================================================
+median BI-RADS density in the usable cohort : 2.0
+binarisation used by the paper              : density_binary = (density >= 2.0)
+
+So "dense" (density_binary = 1) means BI-RADS 2, 3, 4
+   "non-dense" (density_binary = 0) means BI-RADS 0, 1
+
+BI-RADS category x median split:
+                                 non-dense (0)  dense (1)  total
+0                                            2          0      2
+1 / A  almost entirely fatty               536          0    536
+2 / B  scattered fibroglandular              0       1373   1373
+3 / C  heterogeneously dense                 0       1103   1103
+4 / D  extremely dense                       0        554    554
+total                                      538       3030   3568
+
+BI-RADS category x malignancy (counts):
+                                 benign  malignant  total  malignant_rate
+0                                     0          2      2           1.000
+1 / A  almost entirely fatty        332        204    536           0.381
+2 / B  scattered fibroglandular     804        569   1373           0.414
+3 / C  heterogeneously dense        644        459   1103           0.416
+4 / D  extremely dense              331        223    554           0.403
+
+The malignant_rate column is the clinically interesting one: if it is
+flat across BI-RADS categories, density carries little information
+about malignancy in this cohort, which is exactly why the natural
+correlation is near zero and why the paper injects one.
+
+==============================================================================
+2. MEDIAN SPLIT vs THE CLINICAL A/B-versus-C/D SPLIT
+==============================================================================
+clinical convention: BI-RADS 1-2 (A, B) = non-dense; 3-4 (C, D) = dense
+
+agreement between the two splits : 2195 / 3568 images (61.5%)
+
+=> The splits DIFFER. Disagreement breakdown, by BI-RADS category:
+ birads median_split clinical_split  agrees  n_images
+      0    non-dense      non-dense    True         2
+      1    non-dense      non-dense    True       536
+      2        dense      non-dense   False      1373
+      3        dense          dense    True      1103
+      4        dense          dense    True       554
+
+   The rows with agrees=False are the categories the two splits
+   classify differently -- name them explicitly in the response.
+
+   This matters: the aligned/conflicting groups, and therefore the
+   worst-group gap, are defined by the median split. Report the
+   disagreement honestly and, if it is large, consider reporting
+   the clinical split as a robustness column.
+
+              split  n_non_dense  n_dense  frac_dense  agreement_with_other
+     median (paper)          538     3030    0.849215              0.615191
+clinical A/B vs C/D         1911     1657    0.464406              0.615191
+
+==============================================================================
+3. THE CONFOUND STRENGTH, COMPUTED FOUR WAYS
+==============================================================================
+point-biserial, malignant vs density (ordinal 1-4) : r=+0.0090  p=0.5915
+  ^^ THIS is the r = 0.009 figure quoted in the paper. Confirm the
+     manuscript cites this exact variant.
+point-biserial, malignant vs density_binary (median): r=+0.0218  p=0.1926
+point-biserial, malignant vs clinical dense       : r=+0.0061  p=0.7144
+spearman,       malignant vs density (ordinal)     : rho=+0.0097  p=0.5616
+chi-square,     malignant x density_binary 2x2     : chi2=1.577  dof=1  p=0.2092  Cramer V=0.0210
+
+All four agree that the NATURAL association is negligible. That is the
+premise of the controlled-injection design, and it is also why R1.1
+needs the dose-response sweep: the paper must show it is studying
+shortcut learning under a known correlation, not claiming this cohort
+already contains a strong density confound.
+
+==============================================================================
+4. ALIGNED / CONFLICTING GROUPS -- defined BY the split above
+==============================================================================
+aligned      = (malignant & dense) or (benign & non-dense)
+conflicting  = the reverse
+
+whole usable cohort: aligned=1583 (44.4%)  conflicting=1985 (55.6%)
+
+the four cells these groups are built from:
+           non-dense  dense
+benign           332   1779
+malignant        206   1251
+
+Quote these n values when the reviewers ask how large the conflicting
+group is -- a worst-group gap computed on a small group is noisy, and
+being upfront about the cell sizes is better than being asked twice.
+
+==============================================================================
+5. PER-SEED FOLD AND GROUP SIZES  (also answers R2.2 / R2.4)
+==============================================================================
+                  n_mean  n_min  n_max  aligned_mean  conflicting_mean  patients_mean
+fold                                                                                 
+test              1058.7   1007   1120         477.8             580.8          470.0
+train             1995.6   1959   2048         886.2            1109.4          876.0
+train_biased_r06   983.1    906   1042         835.5             147.5          499.9
+val                513.7    456    586         218.9             294.8          220.0
+
+injected training correlation across 13 seeds: mean r=0.625  SD 0.016  min 0.593  max 0.658
+(the paper describes this as r ~ 0.6 -- check that against the above)
+
+Note the row "train_biased_r06": the injection DISCARDS rows to hit
+its target ratio, so the trained-on set is smaller than the available
+training split. The R1.1 sweep logs this per condition, which is why
+it includes a size-matched r~0 control arm.

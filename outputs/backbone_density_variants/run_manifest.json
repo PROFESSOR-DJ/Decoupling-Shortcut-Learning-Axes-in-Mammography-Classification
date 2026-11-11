@@ -1,0 +1,73 @@
+{
+  "script": "r1_2_backbone_density_variants.py",
+  "purpose": "Reviewer 1 comment 2 -- backbones and density representations on CBIS-DDSM",
+  "run_utc": "2026-10-27T16:47:03.793672+00:00",
+  "elapsed_minutes": 159.2,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "variants": {
+    "densenet121": {
+      "label": "DenseNet-121",
+      "backbone": "densenet121",
+      "split": "median",
+      "ordinal": false
+    },
+    "resnet50": {
+      "label": "ResNet-50",
+      "backbone": "resnet50",
+      "split": "median",
+      "ordinal": false
+    },
+    "clinical_split": {
+      "label": "Clinical split (BI-RADS C/D)",
+      "backbone": "resnet18",
+      "split": "clinical",
+      "ordinal": false
+    },
+    "ordinal_density": {
+      "label": "Ordinal density signal",
+      "backbone": "resnet18",
+      "split": "median",
+      "ordinal": true
+    }
+  },
+  "arms": [
+    "baseline",
+    "distcorr",
+    "camreg",
+    "full"
+  ],
+  "reference_csv": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\conference_outputs\\dccam_cbis_results.csv",
+  "n_rows": 95,
+  "laad2_config": {
+    "IMG_SIZE": 224,
+    "BATCH_SIZE": 32,
+    "MAX_EPOCHS": 20,
+    "PATIENCE": 5,
+    "LR": 0.0001,
+    "LAMBDA_RAMP_EPOCHS": 8,
+    "MAX_LAMBDA_GRL": 5.0,
+    "MAX_WEIGHT_DISTCORR": 8.0,
+    "MAX_WEIGHT_CAMREG": 2.0,
+    "BIAS_STRENGTH": 0.85,
+    "DATA_ROOT": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\archive(1)",
+    "CACHE_FILE": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\cbis_image_cache.pkl"
+  },
+  "determinism": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "cudnn_version": 90100,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  }
+}

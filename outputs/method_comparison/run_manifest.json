@@ -1,0 +1,40 @@
+{
+  "script": "journal_experiments.py",
+  "run_utc": "2026-09-19T10:40:35.108170+00:00",
+  "ablations": [
+    "baseline",
+    "grl_only",
+    "distcorr",
+    "mi_min",
+    "camreg",
+    "full"
+  ],
+  "seed_list": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "out_dir": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\journal_outputs",
+  "inbreast_step_ran": true,
+  "determinism": {
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": true,
+    "use_deterministic_algorithms": false,
+    "cublas_workspace_config": ":4096:8",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cudnn_version": 90100
+  }
+}

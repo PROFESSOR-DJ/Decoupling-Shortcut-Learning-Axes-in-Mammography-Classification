@@ -1,0 +1,20 @@
+  [camreg] epoch 1 — grl_lambda 0.00 — w_dc 0.00 — w_cam 0.00 — loss 0.4030 — val AUROC 0.7367
+  [camreg] epoch 2 — grl_lambda 0.62 — w_dc 1.00 — w_cam 0.06 — loss 0.2674 — val AUROC 0.7117
+  [camreg] epoch 3 — grl_lambda 1.25 — w_dc 2.00 — w_cam 0.12 — loss 0.1890 — val AUROC 0.6929
+  [camreg] epoch 4 — grl_lambda 1.88 — w_dc 3.00 — w_cam 0.19 — loss 0.1540 — val AUROC 0.7202
+  [camreg] epoch 5 — grl_lambda 2.50 — w_dc 4.00 — w_cam 0.25 — loss 0.1442 — val AUROC 0.7089
+  [camreg] epoch 6 — grl_lambda 3.12 — w_dc 5.00 — w_cam 0.31 — loss 0.1158 — val AUROC 0.7513
+  [camreg] epoch 7 — grl_lambda 3.75 — w_dc 6.00 — w_cam 0.38 — loss 0.0938 — val AUROC 0.7121
+  [camreg] epoch 8 — grl_lambda 4.38 — w_dc 7.00 — w_cam 0.44 — loss 0.0703 — val AUROC 0.7316
+  [camreg] epoch 9 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0581 — val AUROC 0.7478
+  [camreg] epoch 10 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0519 — val AUROC 0.7174
+  [camreg] epoch 11 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0432 — val AUROC 0.7281
+  [camreg] epoch 12 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0404 — val AUROC 0.7202
+  [camreg] epoch 13 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0356 — val AUROC 0.7306
+  [camreg] epoch 14 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0319 — val AUROC 0.7563
+  [camreg] epoch 15 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0432 — val AUROC 0.7440
+  [camreg] epoch 16 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0387 — val AUROC 0.7502
+  [camreg] epoch 17 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0310 — val AUROC 0.7150
+  [camreg] epoch 18 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0267 — val AUROC 0.7152
+  [camreg] epoch 19 — grl_lambda 5.00 — w_dc 8.00 — w_cam 0.50 — loss 0.0196 — val AUROC 0.7305
+  Early stopping at epoch 19

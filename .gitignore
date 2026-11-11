@@ -1,0 +1,14 @@
+# datasets and caches
+data/*/
+*.pkl
+# model checkpoints and large run files
+*.pt
+*.pth
+outputs/**/ckpt/
+*.partial.csv
+*_SMOKE/
+*_smoke/
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

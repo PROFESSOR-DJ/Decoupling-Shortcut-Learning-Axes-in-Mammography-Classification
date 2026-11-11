@@ -1,0 +1,69 @@
+{
+  "script": "rev7_inbreast_instrumented.py",
+  "run_utc": "2026-10-27T19:16:49.605691+00:00",
+  "args": {
+    "seeds": null,
+    "seed_list": null,
+    "no_probe": false,
+    "smoke": false,
+    "dry_run": false,
+    "data_root": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\archive\\INbreast Release 1.0",
+    "arms": [
+      "baseline",
+      "grl_only",
+      "distcorr",
+      "camreg",
+      "full"
+    ],
+    "conditions": [
+      "main"
+    ],
+    "summary_only": false,
+    "no_ckpt": false,
+    "no_analysis": false,
+    "grl_lambda": 1.0,
+    "grl_weight": 1.0,
+    "grl_reinit": 0,
+    "grl_adv": "linear"
+  },
+  "laad2_constants": {
+    "IMG_SIZE": 224,
+    "BATCH_SIZE": 32,
+    "MAX_EPOCHS": 20,
+    "PATIENCE": 5,
+    "LR": 0.0001,
+    "MAX_LAMBDA_GRL": 5.0,
+    "GRL_ADV_WEIGHT": 2.0,
+    "GRL_REINIT_EVERY": 4,
+    "MAX_WEIGHT_DISTCORR": 8.0,
+    "MAX_WEIGHT_CAMREG": 2.0,
+    "LAMBDA_RAMP_EPOCHS": 8,
+    "BIAS_TRAINING": true,
+    "BIAS_STRENGTH": 0.85
+  },
+  "determinism": {
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cublas_workspace_config": ":4096:8",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "data_root": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\archive\\INbreast Release 1.0"
+}

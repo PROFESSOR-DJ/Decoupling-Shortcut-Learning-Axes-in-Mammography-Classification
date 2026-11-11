@@ -1,0 +1,3 @@
+split,n_non_dense,n_dense,frac_dense,agreement_with_other
+median (paper),538,3030,0.8492152466367713,0.6151905829596412
+clinical A/B vs C/D,1911,1657,0.4644058295964126,0.6151905829596412

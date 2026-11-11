@@ -1,0 +1,30 @@
+{
+  "script": "r1_5_density_split_report.py",
+  "purpose": "Reviewer 1 comment 5 -- BI-RADS composition of the median density split (no training); also supplies R2.2/R2.4 counts",
+  "run_utc": "2026-10-26T16:04:34.051984+00:00",
+  "elapsed_minutes": 0.02,
+  "n_images": 3568,
+  "n_patients": 1566,
+  "density_median": 2.0,
+  "seeds_reported": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "env": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "pandas": "2.3.1",
+    "numpy": "2.2.6"
+  }
+}

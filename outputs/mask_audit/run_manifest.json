@@ -1,0 +1,30 @@
+{
+  "script": "r1_4_mask_audit.py",
+  "purpose": "Reviewer 1 comment 4 -- Otsu breast-mask verification (no training)",
+  "run_utc": "2026-10-26T16:05:21.112732+00:00",
+  "elapsed_minutes": 0.2,
+  "n_images_audited": 3103,
+  "thresholds": {
+    "AREA_MIN_FRAC": 0.15,
+    "AREA_MAX_FRAC": 0.92,
+    "DISCARD_FRAC": 0.08,
+    "TOP_BOTTOM_FRAC": 0.8,
+    "MORPH_RADII": [
+      3,
+      5,
+      9
+    ]
+  },
+  "full_res_check": true,
+  "laad2": {
+    "IMG_SIZE": 224,
+    "CACHE_FILE": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\cbis_image_cache.pkl",
+    "DATA_ROOT": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\archive(1)"
+  },
+  "env": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "opencv": "4.12.0",
+    "numpy": "2.2.6"
+  }
+}

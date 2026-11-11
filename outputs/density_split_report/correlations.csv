@@ -1,0 +1,7 @@
+test,variables,statistic,p_value
+point-biserial,malignant vs density (ordinal 1-4),0.008986417932513525,0.59153973120892
+point-biserial,malignant vs density_binary (median),0.021819728406361788,0.19255750159242807
+point-biserial,malignant vs dense (clinical A/B vs C/D),0.006128883519546924,0.7143873466855796
+spearman,malignant vs density (ordinal),0.009719686583643281,0.5616491059388298
+chi2,malignant x density_binary (2x2),1.5769370698312473,0.20920243606857541
+cramers_v,malignant x density_binary (2x2),0.021023003295285874,

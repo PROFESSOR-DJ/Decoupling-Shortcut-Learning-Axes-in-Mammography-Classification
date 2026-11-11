@@ -1,0 +1,106 @@
+{
+  "script": "r1_1_correlation_strength_sweep.py",
+  "purpose": "Reviewer 1 comment 1 -- correlation-strength sweep on CBIS-DDSM",
+  "run_utc": "2026-10-26T20:08:03.374319+00:00",
+  "elapsed_minutes": 0.12,
+  "summarize_only": true,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "conditions": {
+    "natural": {
+      "inject": false,
+      "strength": null,
+      "mode": "none",
+      "label": "natural (no injection)"
+    },
+    "subsample_r00": {
+      "inject": true,
+      "strength": 0.5,
+      "mode": "laad2",
+      "label": "subsampled, r~0 (size control)"
+    },
+    "weak_r03": {
+      "inject": true,
+      "strength": 0.65,
+      "mode": "laad2",
+      "label": "weak, r~0.30"
+    },
+    "moderate_r045": {
+      "inject": true,
+      "strength": 0.75,
+      "mode": "laad2",
+      "label": "moderate, r~0.45"
+    },
+    "published_r06": {
+      "inject": true,
+      "strength": 0.85,
+      "mode": "laad2",
+      "label": "published, r~0.62"
+    },
+    "sizematched_r06": {
+      "inject": true,
+      "strength": 0.85,
+      "mode": "sizematched",
+      "label": "published injection, n-matched (size control)"
+    },
+    "balanced_r00": {
+      "inject": true,
+      "strength": null,
+      "mode": "balanced",
+      "target_r": 0.0,
+      "n_match": "balanced_r06",
+      "label": "class-balanced, r~0 (null for the prior control)"
+    },
+    "balanced_r06": {
+      "inject": true,
+      "strength": null,
+      "mode": "balanced",
+      "target_r": 0.62,
+      "label": "class-balanced, r~0.62 (prior control)"
+    }
+  },
+  "strategies": [
+    "baseline",
+    "distcorr",
+    "camreg",
+    "full"
+  ],
+  "n_rows": 160,
+  "import_published": true,
+  "published_csv_used": null,
+  "rows_by_source": {
+    "trained": 142,
+    "imported": 18
+  },
+  "laad2_config": {
+    "IMG_SIZE": 224,
+    "BATCH_SIZE": 32,
+    "MAX_EPOCHS": 20,
+    "PATIENCE": 5,
+    "LR": 0.0001,
+    "LAMBDA_RAMP_EPOCHS": 8,
+    "MAX_LAMBDA_GRL": 5.0,
+    "GRL_ADV_WEIGHT": 2.0,
+    "MAX_WEIGHT_DISTCORR": 8.0,
+    "MAX_WEIGHT_CAMREG": 2.0,
+    "DATA_ROOT": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\archive(1)",
+    "CACHE_FILE": "D:\\Amrita\\Research\\Medical Image Processing Dr Ragesh Krishnan\\Breast MRI\\CBIS-DDSM\\cbis_image_cache.pkl"
+  },
+  "determinism": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "cudnn_version": 90100,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  }
+}

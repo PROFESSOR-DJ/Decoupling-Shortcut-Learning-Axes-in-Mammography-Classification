@@ -1,0 +1,65 @@
+{
+  "script": "r2_3_full_weight_grid.py",
+  "run_utc": "2026-10-27T17:26:13.895761+00:00",
+  "args": {
+    "seeds": 5,
+    "seed_list": null,
+    "no_probe": false,
+    "smoke": false,
+    "dry_run": false,
+    "dc_weights": [
+      2.0,
+      8.0,
+      16.0
+    ],
+    "cam_weights": [
+      0.5,
+      2.0,
+      8.0
+    ],
+    "summarize_only": false,
+    "save_ckpt": false
+  },
+  "laad2_constants": {
+    "IMG_SIZE": 224,
+    "BATCH_SIZE": 32,
+    "MAX_EPOCHS": 20,
+    "PATIENCE": 5,
+    "LR": 0.0001,
+    "MAX_LAMBDA_GRL": 5.0,
+    "GRL_ADV_WEIGHT": 2.0,
+    "GRL_REINIT_EVERY": 4,
+    "MAX_WEIGHT_DISTCORR": 8.0,
+    "MAX_WEIGHT_CAMREG": 2.0,
+    "LAMBDA_RAMP_EPOCHS": 8,
+    "BIAS_TRAINING": true,
+    "BIAS_STRENGTH": 0.85
+  },
+  "determinism": {
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cublas_workspace_config": ":4096:8",
+    "python_version": "3.11.9",
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "plan": [
+    "full_dc2_cam0.5",
+    "full_dc2_cam2",
+    "full_dc2_cam8",
+    "full_dc8_cam0.5",
+    "full_dc8_cam2",
+    "full_dc8_cam8",
+    "full_dc16_cam0.5",
+    "full_dc16_cam2",
+    "full_dc16_cam8"
+  ]
+}
