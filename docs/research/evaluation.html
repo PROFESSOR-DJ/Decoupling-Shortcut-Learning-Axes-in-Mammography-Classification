@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Evaluation · Mammography Shortcut Axes</title>
+<meta name="description" content="The test images are split into two groups:">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html" aria-current="page">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">Research</p>
+      <h1 id="evaluation">Evaluation</h1>
+<h2 id="group-gap-main-measure">Group gap (main measure)<a class="anchor" href="#group-gap-main-measure" aria-label="Link to this section">#</a></h2>
+<p>The test images are split into two groups:</p>
+<ul>
+<li><strong>Fits the shortcut ("aligned"):</strong> a dense cancer, or a non-dense benign case.</li>
+<li><strong>Breaks the shortcut ("conflicting"):</strong> a non-dense cancer, or a dense benign case.</li>
+</ul>
+<p>A model that relies on density does well on the first group and badly on the second. The <strong>group gap</strong> is the difference in AUROC between them:</p>
+<div class="arithmatex">\[
+\Delta_{\text{gap}} = \mathrm{AUROC}_a - \mathrm{AUROC}_c
+\]</div>
+<p>The two group scores are listed on their own as well, since the gap can shrink because one group improves or because the other gets worse.</p>
+<h2 id="off-breast-attention-sas">Off-breast attention (SAS)<a class="anchor" href="#off-breast-attention-sas" aria-label="Link to this section">#</a></h2>
+<p>The <strong>spurious attribution score</strong> is the share of the model's heat map that falls outside the breast mask, averaged over the test images. <span class="arithmatex">\(M_i\)</span> is 1 inside the breast and 0 outside, and <span class="arithmatex">\(\mathrm{CAM}_i\)</span> is the heat-map value at pixel <span class="arithmatex">\(i\)</span>:</p>
+<div class="arithmatex">\[
+\mathrm{SAS} = \frac{\sum_i \mathrm{CAM}_i \,(1 - M_i)}{\sum_i \mathrm{CAM}_i}
+\]</div>
+<div class="callout note">
+<p class="callout-title">Note</p>
+<p>SAS tells you <strong>where</strong> the model looks. It does not tell you how much it relies on density, since density itself is inside the breast.</p>
+</div>
+<h2 id="density-probe">Density probe<a class="anchor" href="#density-probe" aria-label="Link to this section">#</a></h2>
+<p>A new, simple classifier (logistic regression) is trained on the model's frozen features to guess density, repeated over 20 random resamples. High accuracy means density is still easy to read from the features. Because always guessing "dense" already gives 0.848, balanced accuracy and AUROC of the probe are reported too.</p>
+<h2 id="calibration-and-threshold">Calibration and threshold<a class="anchor" href="#calibration-and-threshold" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>ECE</strong> (10 bins) and the <strong>Brier score</strong> show how well the predicted probabilities match reality.</li>
+<li>The best decision threshold is chosen on validation data with <strong>Youden's J</strong>.</li>
+<li>Sensitivity and specificity are reported at 0.5 and at that threshold, for all test images and for the group that breaks the shortcut.</li>
+</ul>
+<h2 id="statistics">Statistics<a class="anchor" href="#statistics" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Every main result is repeated with <strong>13 random seeds (42–54)</strong>. Each method is compared with the baseline <strong>seed by seed</strong>, giving a mean difference, a <strong>95% bootstrap confidence interval</strong> (5,000 resamples) and a <strong>Wilcoxon signed-rank p-value</strong>.</li>
+<li>With 13 paired runs that all move the same way, the smallest possible p-value is <span class="arithmatex">\(2 \times 0.5^{13} \approx 2.44 \times 10^{-4}\)</span>. Several results hit this floor.</li>
+<li>There are 16 comparisons (4 methods × 4 measures). The group gap is the main one. 12 are significant at 0.05, 12 stay significant after Benjamini–Hochberg correction, and 8 after the stricter Bonferroni correction. The gap results for distance correlation and both fixes survive even Bonferroni.</li>
+<li>The extra studies use <strong>5 seeds (42–46)</strong>. Five runs can never give a Wilcoxon p-value below 0.0625, so for these the confidence interval and the number of runs pointing the same way carry the evidence.</li>
+</ul>
+<h2 id="training-settings">Training settings<a class="anchor" href="#training-settings" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network</td>
+<td>ResNet-18 (ImageNet), pooled features + one linear layer</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Grayscale 224 × 224, three channels, left–right flips</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>Adam, learning rate 10⁻⁴, batch size 32</td>
+</tr>
+<tr>
+<td>Training length</td>
+<td>Up to 20 epochs; stop early on validation AUROC (patience 5), only after the 8-epoch warm-up</td>
+</tr>
+<tr>
+<td>Data split</td>
+<td>70% train and validation, 30% test, grouped by patient; 20% of the first part used for validation</td>
+</tr>
+<tr>
+<td>Penalty weights</td>
+<td>Distance correlation 8; CAM 2; GRL λ up to 5, weight 2</td>
+</tr>
+<tr>
+<td>Breast mask</td>
+<td>Otsu threshold after a 5 × 5 blur, largest region kept</td>
+</tr>
+<tr>
+<td>Density probe</td>
+<td>Logistic regression on a 70/30 split of test features, 20 resamples</td>
+</tr>
+<tr>
+<td>Seeds</td>
+<td>13 (42–54); 5 (42–46) for the extra studies</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>NVIDIA RTX 4060 Laptop GPU, PyTorch 2.5.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Running the main comparison a second time gave the same per-run numbers, to four decimal places, for the baseline, distance correlation, CAM regularization and both fixes.</p>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../research/method.html"><span class="dir">← Previous</span><span class="ttl">Research: Method</span></a><a class="next" href="../results/index.html"><span class="dir">Next →</span><span class="ttl">Results: Overview</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#group-gap-main-measure">Group gap (main measure)</a></li><li class="lvl-2"><a href="#off-breast-attention-sas">Off-breast attention (SAS)</a></li><li class="lvl-2"><a href="#density-probe">Density probe</a></li><li class="lvl-2"><a href="#calibration-and-threshold">Calibration and threshold</a></li><li class="lvl-2"><a href="#statistics">Statistics</a></li><li class="lvl-2"><a href="#training-settings">Training settings</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},options:{ignoreHtmlClass:".*|",processHtmlClass:"arithmatex"}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

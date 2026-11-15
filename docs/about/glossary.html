@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Glossary · Mammography Shortcut Axes</title>
+<meta name="description" content="Glossary">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html" aria-current="page">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">About</p>
+      <h1 id="glossary">Glossary</h1>
+<h2 id="short-forms">Short forms<a class="anchor" href="#short-forms" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACR</td>
+<td>American College of Radiology (density grades used in INbreast)</td>
+</tr>
+<tr>
+<td>AUROC</td>
+<td>Area under the ROC curve: how well a model ranks cancers above benign cases (0.5 = chance, 1 = perfect)</td>
+</tr>
+<tr>
+<td>BI-RADS</td>
+<td>The standard system radiologists use for reporting; its density grades run from A to D</td>
+</tr>
+<tr>
+<td>CAM</td>
+<td>Class activation map: a heat map of which image areas drove the prediction</td>
+</tr>
+<tr>
+<td>CBIS-DDSM</td>
+<td>A curated public collection of scanned film mammograms</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>Confidence interval</td>
+</tr>
+<tr>
+<td>CLUB</td>
+<td>A method that reduces mutual information between features and an attribute</td>
+</tr>
+<tr>
+<td>DistCorr / dCor</td>
+<td>Distance correlation: a measure of any kind of dependence between two variables</td>
+</tr>
+<tr>
+<td>ECE</td>
+<td>Expected calibration error: how far predicted probabilities are from real frequencies</td>
+</tr>
+<tr>
+<td>FDR</td>
+<td>False discovery rate</td>
+</tr>
+<tr>
+<td>GAP</td>
+<td>Global average pooling</td>
+</tr>
+<tr>
+<td>Grad-CAM</td>
+<td>A common way of drawing a CAM heat map from a trained network</td>
+</tr>
+<tr>
+<td>GRL</td>
+<td>Gradient reversal layer: the core of adversarial removal</td>
+</tr>
+<tr>
+<td>Group DRO</td>
+<td>A training method that focuses on the worst-off group</td>
+</tr>
+<tr>
+<td>JTT</td>
+<td>Just Train Twice: retrains with extra weight on the examples a first model got wrong</td>
+</tr>
+<tr>
+<td>MI</td>
+<td>Mutual information</td>
+</tr>
+<tr>
+<td>MINE</td>
+<td>A neural estimator of mutual information, used here as a penalty</td>
+</tr>
+<tr>
+<td>SAS</td>
+<td>Spurious attribution score: the share of the heat map outside the breast</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>Standard deviation</td>
+</tr>
+<tr>
+<td>TCIA</td>
+<td>The Cancer Imaging Archive, which hosts CBIS-DDSM</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="key-ideas">Key ideas<a class="anchor" href="#key-ideas" aria-label="Link to this section">#</a></h2>
+<dl>
+<dt>Shortcut</dt>
+<dd>An easy cue that happens to go along with the label in the training data, which the model uses instead of the real signal.</dd>
+<dt>Aligned group</dt>
+<dd>Test cases that fit the shortcut: a dense cancer, or a non-dense benign case.</dd>
+<dt>Conflicting group</dt>
+<dd>Test cases that break the shortcut: a non-dense cancer, or a dense benign case. A shortcut-reliant model struggles here.</dd>
+<dt>Group gap</dt>
+<dd>AUROC on the aligned group minus AUROC on the conflicting group. The main measure in this work; smaller is fairer.</dd>
+<dt>Density probe</dt>
+<dd>A simple classifier trained on the model's features to guess density. If it guesses well, density is still in the features.</dd>
+<dt>Adding the shortcut</dt>
+<dd>Sampling the training data so that density and cancer go together (r ≈ 0.6), while the validation and test data stay untouched.</dd>
+</dl>
+<h2 id="symbols">Symbols<a class="anchor" href="#symbols" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\alpha\)</span></td>
+<td>Significance level of a test (here 0.05)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{AUROC}_a\)</span></td>
+<td>AUROC on the aligned group</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{AUROC}_c\)</span></td>
+<td>AUROC on the conflicting group</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{CAM}_i\)</span></td>
+<td>Heat-map value at pixel <span class="arithmatex">\(i\)</span> (normalized, never negative)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Delta_{\text{gap}}\)</span></td>
+<td>Group gap, <span class="arithmatex">\(\mathrm{AUROC}_a - \mathrm{AUROC}_c\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(J\)</span></td>
+<td>Youden's J: sensitivity + specificity − 1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lambda\)</span></td>
+<td>Reversal strength, or the weight of a penalty</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lambda_{\max}\)</span></td>
+<td>Highest reversal strength</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M_i\)</span></td>
+<td>Breast mask at pixel <span class="arithmatex">\(i\)</span>: 1 inside, 0 outside</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(n\)</span></td>
+<td>Number of paired runs</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p\)</span></td>
+<td>Wilcoxon signed-rank p-value</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r\)</span></td>
+<td>Correlation between density and cancer</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(w\)</span></td>
+<td>Weight of the adversarial loss</td>
+</tr>
+</tbody>
+</table></div>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../about/publication.html"><span class="dir">← Previous</span><span class="ttl">About: Publication</span></a><a class="next" href="../about/references.html"><span class="dir">Next →</span><span class="ttl">About: References</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#short-forms">Short forms</a></li><li class="lvl-2"><a href="#key-ideas">Key ideas</a></li><li class="lvl-2"><a href="#symbols">Symbols</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},options:{ignoreHtmlClass:".*|",processHtmlClass:"arithmatex"}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

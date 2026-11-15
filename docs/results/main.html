@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Main comparison · Mammography Shortcut Axes</title>
+<meta name="description" content="All five methods on CBIS-DDSM, repeated over 13 seeds.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html" aria-current="page">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">Results</p>
+      <h1 id="main-comparison">Main comparison</h1>
+<p>All five methods on CBIS-DDSM, repeated over 13 seeds.</p>
+<h2 id="scores-by-method">Scores by method<a class="anchor" href="#scores-by-method" aria-label="Link to this section">#</a></h2>
+<p>Average ± SD over 13 runs. Each run has about 478 test cases that fit the shortcut (AUROC_a) and 581 that break it (AUROC_c). Var is how much AUROC_c changes from run to run. The probe column is plain accuracy; always guessing "dense" already scores 0.848.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>AUROC</th>
+<th>AUROC_a</th>
+<th>AUROC_c</th>
+<th>Var(AUROC_c)</th>
+<th>Gap</th>
+<th>SAS</th>
+<th>Probe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline</td>
+<td class="num">0.705 ± 0.018</td>
+<td class="num">0.902 ± 0.024</td>
+<td class="num">0.544 ± 0.066</td>
+<td class="num">0.0043</td>
+<td class="num">0.357 ± 0.087</td>
+<td class="num">0.557 ± 0.046</td>
+<td class="num">0.905 ± 0.012</td>
+</tr>
+<tr>
+<td>GRL</td>
+<td class="num">0.549 ± 0.042</td>
+<td class="num">0.883 ± 0.125</td>
+<td class="num">0.219 ± 0.088</td>
+<td class="num">0.0077</td>
+<td class="num">0.664 ± 0.203</td>
+<td class="num">0.619 ± 0.049</td>
+<td class="num">0.905 ± 0.010</td>
+</tr>
+<tr>
+<td>Distance correlation</td>
+<td class="num">0.696 ± 0.023</td>
+<td class="num">0.764 ± 0.053</td>
+<td class="num">0.681 ± 0.058</td>
+<td class="num">0.0034</td>
+<td class="num">0.083 ± 0.090</td>
+<td class="num">0.650 ± 0.053</td>
+<td class="num">0.862 ± 0.014</td>
+</tr>
+<tr>
+<td>CAM regularization</td>
+<td class="num">0.689 ± 0.027</td>
+<td class="num">0.887 ± 0.025</td>
+<td class="num">0.555 ± 0.053</td>
+<td class="num">0.0028</td>
+<td class="num">0.331 ± 0.066</td>
+<td class="num">0.018 ± 0.004</td>
+<td class="num">0.906 ± 0.012</td>
+</tr>
+<tr>
+<td>Both fixes</td>
+<td class="num">0.684 ± 0.023</td>
+<td class="num">0.744 ± 0.051</td>
+<td class="num">0.679 ± 0.051</td>
+<td class="num">0.0026</td>
+<td class="num">0.065 ± 0.078</td>
+<td class="num">0.021 ± 0.003</td>
+<td class="num">0.861 ± 0.014</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="change-compared-with-the-baseline">Change compared with the baseline<a class="anchor" href="#change-compared-with-the-baseline" aria-label="Link to this section">#</a></h2>
+<p>Each method minus the baseline, run by run (13 runs), with a 95% bootstrap interval and a Wilcoxon p-value. Rows in bold are the main measure, the group gap.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Measure</th>
+<th>Average change</th>
+<th>95% interval</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GRL</strong></td>
+<td><strong>Gap</strong></td>
+<td class="num"><strong>+0.307</strong></td>
+<td class="num"><strong>[+0.156, +0.418]</strong></td>
+<td class="num"><strong>0.013</strong></td>
+</tr>
+<tr>
+<td>GRL</td>
+<td>AUROC</td>
+<td class="num">−0.157</td>
+<td class="num">[−0.178, −0.135]</td>
+<td class="num">0.0002</td>
+</tr>
+<tr>
+<td><strong>Distance correlation</strong></td>
+<td><strong>Gap</strong></td>
+<td class="num"><strong>−0.275</strong></td>
+<td class="num"><strong>[−0.335, −0.219]</strong></td>
+<td class="num"><strong>0.0002</strong></td>
+</tr>
+<tr>
+<td>Distance correlation</td>
+<td>Probe</td>
+<td class="num">−0.043</td>
+<td class="num">[−0.049, −0.037]</td>
+<td class="num">0.0002</td>
+</tr>
+<tr>
+<td>Distance correlation</td>
+<td>SAS</td>
+<td class="num">+0.093</td>
+<td class="num">[+0.058, +0.128]</td>
+<td class="num">0.0005</td>
+</tr>
+<tr>
+<td>Distance correlation</td>
+<td>AUROC</td>
+<td class="num">−0.010</td>
+<td class="num">[−0.019, −0.001]</td>
+<td class="num">0.147</td>
+</tr>
+<tr>
+<td>CAM regularization</td>
+<td>SAS</td>
+<td class="num">−0.540</td>
+<td class="num">[−0.563, −0.516]</td>
+<td class="num">0.0002</td>
+</tr>
+<tr>
+<td><strong>CAM regularization</strong></td>
+<td><strong>Gap</strong></td>
+<td class="num"><strong>−0.026</strong></td>
+<td class="num"><strong>[−0.075, +0.022]</strong></td>
+<td class="num"><strong>0.376</strong></td>
+</tr>
+<tr>
+<td>CAM regularization</td>
+<td>AUROC</td>
+<td class="num">−0.016</td>
+<td class="num">[−0.027, −0.004]</td>
+<td class="num">0.022</td>
+</tr>
+<tr>
+<td><strong>Both fixes</strong></td>
+<td><strong>Gap</strong></td>
+<td class="num"><strong>−0.292</strong></td>
+<td class="num"><strong>[−0.348, −0.242]</strong></td>
+<td class="num"><strong>0.0002</strong></td>
+</tr>
+<tr>
+<td>Both fixes</td>
+<td>SAS</td>
+<td class="num">−0.536</td>
+<td class="num">[−0.560, −0.512]</td>
+<td class="num">0.0002</td>
+</tr>
+<tr>
+<td>Both fixes</td>
+<td>Probe</td>
+<td class="num">−0.044</td>
+<td class="num">[−0.052, −0.036]</td>
+<td class="num">0.0002</td>
+</tr>
+<tr>
+<td>Both fixes</td>
+<td>AUROC</td>
+<td class="num">−0.022</td>
+<td class="num">[−0.035, −0.006]</td>
+<td class="num">0.022</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="figure-slot">
+  <img src="../assets/figures/forest_plot_main.png" alt="Forest plot of changes against the baseline" onerror="this.parentElement.classList.add('is-empty')">
+  <div class="figure-placeholder"><strong>Image placeholder: forest plot</strong><span>Add <code>docs/assets/figures/forest_plot_main.png</code> (made by <code>analysis/paper_figures.py</code>)</span></div>
+  <figcaption>Change from the baseline for the four main measures over 13 runs. Red points have a 95% interval that does not cross zero. Panel (a), the group gap, is the main measure.</figcaption>
+</figure>
+
+<h2 id="what-this-shows">What this shows<a class="anchor" href="#what-this-shows" aria-label="Link to this section">#</a></h2>
+<p><strong>Default GRL backfires.</strong> AUROC falls by about 16 points and the gap almost doubles. Results also swing widely: the gap grew in 12 of 13 runs (by up to 0.606) and shrank in one (by 0.468), and in that run the aligned-group AUROC itself dropped to 0.494. The <a href="baselines.html">GRL settings study</a> shows this is caused by these particular settings.</p>
+<p><strong>Distance correlation fixes only the features.</strong> The gap and the density probe both fall a lot, for about one AUROC point (−0.010, p = 0.147). The heat maps do not move back into the breast; SAS goes up slightly (+0.093). The probe drop is bigger than its accuracy suggests: balanced accuracy goes from 0.791 to 0.557, and probe AUROC from 0.903 to 0.789.</p>
+<p><strong>CAM regularization fixes only the heat maps.</strong> SAS falls more than tenfold, but the gap (−0.026, p = 0.376) and the probe do not change meaningfully. So the two problems really are separate.</p>
+<p><strong>Both fixes together</strong> keep both benefits, without making either problem worse, for a small AUROC cost (−0.022, p = 0.022).</p>
+<div class="callout info">
+<p class="callout-title">Where the smaller gap comes from</p>
+<p>Distance correlation and both fixes raise AUROC on the group that breaks the shortcut by about 0.14, and lower it on the group that fits it by 0.14–0.16, in all 13 runs. So some of the improvement is traded away on the easier group. The harder group has only about 60 cancers per run, so its score varies a lot between runs (variance 0.0026–0.0077). That is why every comparison is made run by run.</p>
+</div>
+<h2 id="heat-map-examples">Heat-map examples<a class="anchor" href="#heat-map-examples" aria-label="Link to this section">#</a></h2>
+<figure class="figure-slot">
+  <img src="../assets/figures/dccam_qualitative_gradcam.png" alt="Grad-CAM heat maps for each method" onerror="this.parentElement.classList.add('is-empty')">
+  <div class="figure-placeholder"><strong>Image placeholder: Grad-CAM examples</strong><span>Add <code>docs/assets/figures/dccam_qualitative_gradcam.png</code> (made by <code>experiments/main_cbis_ddsm.py</code>)</span></div>
+  <figcaption>Heat maps from each method on four test cases (two benign, two malignant) where density and diagnosis disagree. The green line marks the breast edge.</figcaption>
+</figure>
+
+<p>For the baseline and for distance correlation, the heat maps reach outside the breast. In the malignant, non-dense case, both focus on a bright artifact near the image edge instead of the tumour. With CAM regularization and with both fixes, the heat maps stay inside the breast in every case.</p>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../results/index.html"><span class="dir">← Previous</span><span class="ttl">Results: Overview</span></a><a class="next" href="../results/sensitivity.html"><span class="dir">Next →</span><span class="ttl">Results: Loss weights and shortcut strength</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#scores-by-method">Scores by method</a></li><li class="lvl-2"><a href="#change-compared-with-the-baseline">Change compared with the baseline</a></li><li class="lvl-2"><a href="#what-this-shows">What this shows</a></li><li class="lvl-2"><a href="#heat-map-examples">Heat-map examples</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+
+</body>
+</html>

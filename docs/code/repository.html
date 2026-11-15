@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Repository structure · Mammography Shortcut Axes</title>
+<meta name="description" content="The pipeline diagram was drawn by hand, not by code.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html" aria-current="page">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">Code</p>
+      <h1 id="repository-structure">Repository structure</h1>
+<div class="highlight"><pre><span></span><code>mammography-shortcut-axes/
+├── src/                          shared code used by every script
+│   ├── core_pipeline.py          data, breast masks, shortcut, network, training, evaluation
+│   ├── core_pipeline_legacy.py   older copy of the pipeline, used by external_validation.py
+│   ├── external_validation.py    INbreast loading, DICOM reading, external-dataset runs
+│   ├── published_baselines.py    MINE, two-layer adversary, Group DRO and JTT
+│   ├── experiment_utils.py       data splits, single runs, saving results, statistics
+│   └── paths.py                  where data is read from and results are written to
+├── experiments/                  scripts that train models
+├── analysis/                     scripts that only read data or results
+├── data/                         datasets go here (not included)
+├── outputs/                      one folder per script
+├── docs/                         this website (HTML, CSS and JavaScript)
+├── requirements.txt
+└── README.md
+</code></pre></div>
+<h2 id="shared-code">Shared code<a class="anchor" href="#shared-code" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it handles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core_pipeline.py</code></td>
+<td>Reading CBIS-DDSM, the image cache, the breast mask, adding the shortcut, the network (ResNet-18 with a cancer head and a density head), the five training methods, Grad-CAM, SAS, the density probe, and the statistics</td>
+</tr>
+<tr>
+<td><code>core_pipeline_legacy.py</code></td>
+<td>An older version of the same pipeline, still needed by <code>external_validation.py</code></td>
+</tr>
+<tr>
+<td><code>external_validation.py</code></td>
+<td>Reading INbreast and its DICOM files, and running the main comparison on another dataset</td>
+</tr>
+<tr>
+<td><code>published_baselines.py</code></td>
+<td>The MINE penalty, the two-layer adversary, Group DRO and JTT, trained on the same splits</td>
+</tr>
+<tr>
+<td><code>experiment_utils.py</code></td>
+<td>Patient-grouped splits, shortcut settings, one train-and-test run, saved probabilities, a results file that lets stopped runs continue, and paired statistics</td>
+</tr>
+<tr>
+<td><code>paths.py</code></td>
+<td>Data and output folders; can be changed with <code>CBIS_DDSM_DIR</code> and <code>INBREAST_DIR</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="which-script-produces-which-result">Which script produces which result<a class="anchor" href="#which-script-produces-which-result" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Script</th>
+<th>Output folder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main comparison tables and heat-map examples</td>
+<td><code>experiments/main_cbis_ddsm.py</code></td>
+<td><code>outputs/main_experiment/</code></td>
+</tr>
+<tr>
+<td>Comparison with published methods</td>
+<td><code>experiments/method_comparison.py</code></td>
+<td><code>outputs/method_comparison/</code></td>
+</tr>
+<tr>
+<td>Data sizes, calibration table, SAS with shrunk and grown masks</td>
+<td><code>experiments/calibration_experiment.py</code> + <code>analysis/calibration_analysis.py</code></td>
+<td><code>outputs/calibration_experiment/</code></td>
+</tr>
+<tr>
+<td>Balanced accuracy and AUROC of the density probe</td>
+<td><code>analysis/density_probe_metrics.py</code></td>
+<td><code>outputs/calibration_experiment/</code></td>
+</tr>
+<tr>
+<td>INbreast row of the robustness table</td>
+<td><code>experiments/inbreast_validation.py</code></td>
+<td><code>outputs/inbreast_validation/</code></td>
+</tr>
+<tr>
+<td>Shortcut-strength rows and sweep panel (a)</td>
+<td><code>experiments/shortcut_strength_sweep.py</code></td>
+<td><code>outputs/shortcut_strength_sweep/</code></td>
+</tr>
+<tr>
+<td>Backbone and density-definition rows</td>
+<td><code>experiments/backbone_density_variants.py</code></td>
+<td><code>outputs/backbone_density_variants/</code></td>
+</tr>
+<tr>
+<td>Sweep panels (b, c) and the GRL settings figure</td>
+<td><code>experiments/weight_and_grl_sweeps.py</code></td>
+<td><code>outputs/distcorr_weight_sweep/</code>, <code>camreg_weight_sweep/</code>, <code>grl_settings/</code></td>
+</tr>
+<tr>
+<td>Sweep panel (d), the full-model weight grid</td>
+<td><code>experiments/full_weight_grid.py</code></td>
+<td><code>outputs/full_weight_grid/</code></td>
+</tr>
+<tr>
+<td>Density definition and natural correlation</td>
+<td><code>analysis/density_split_report.py</code></td>
+<td><code>outputs/density_split_report/</code></td>
+</tr>
+<tr>
+<td>Breast-mask audit</td>
+<td><code>analysis/mask_audit.py</code></td>
+<td><code>outputs/mask_audit/</code></td>
+</tr>
+<tr>
+<td>Forest plot, sweep figure and GRL figure</td>
+<td><code>analysis/paper_figures.py</code></td>
+<td><code>outputs/paper_figures/</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The pipeline diagram was drawn by hand, not by code.</p>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../code/getting-started.html"><span class="dir">← Previous</span><span class="ttl">Code: Getting started</span></a><a class="next" href="../code/outputs.html"><span class="dir">Next →</span><span class="ttl">Code: Output files</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#shared-code">Shared code</a></li><li class="lvl-2"><a href="#which-script-produces-which-result">Which script produces which result</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+
+</body>
+</html>

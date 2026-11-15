@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Related work · Mammography Shortcut Axes</title>
+<meta name="description" content="Earlier work falls into a few families. The table lists the main studies in each family and what they do.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html" aria-current="page">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">Research</p>
+      <h1 id="related-work">Related work</h1>
+<p>Earlier work falls into a few families. The table lists the main studies in each family and what they do.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Family</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Adversarial removal</strong> (Ganin &amp; Lempitsky 2015; Elazar &amp; Goldberg 2018; Kumar et al. 2022)</td>
+<td>Trains a second classifier to find the unwanted attribute and pushes the main model to hide it. The attribute can often still be recovered afterwards.</td>
+</tr>
+<tr>
+<td><strong>Unstable debiasing</strong> (Amir et al. 2021; Orgad &amp; Belinkov 2023; Ganesh et al. 2023, 2024; Yata et al. 2026)</td>
+<td>Shows that fairness results change a lot with the random seed and data split, and that adversarial training is unstable.</td>
+</tr>
+<tr>
+<td><strong>Dependence penalties</strong> (Székely et al. 2007; Zhen et al. 2022; Guo et al. 2024; Kavak et al. 2025; Díaz Berenguer et al. 2024; Müller et al. 2024; Belghazi et al. 2018; Cheng et al. 2020)</td>
+<td>Adds a penalty, such as distance correlation or mutual information, when the features depend on the unwanted attribute. Müller et al. (2024) compared these on medical images.</td>
+</tr>
+<tr>
+<td><strong>Group-robust training</strong> (Sagawa et al. 2020; Liu et al. 2021)</td>
+<td>Gives more weight to the worst-off group (Group DRO) or to hard examples (JTT).</td>
+</tr>
+<tr>
+<td><strong>Heat-map supervision</strong> (Selvaraju et al. 2017; Zhou et al. 2016; Mahapatra et al. 2022; Xu et al. 2021; Miguel et al. 2025; Uddin et al. 2025; Viviano et al. 2021)</td>
+<td>Uses CAM or Grad-CAM maps as a training signal. Better maps do not always mean better generalization.</td>
+</tr>
+<tr>
+<td><strong>Shortcuts in radiology</strong> (Tsue et al. 2023; Zepeda-Reyes et al. 2026; Woo et al. 2025; Khara et al. 2024; Banerjee et al. 2023; Brown et al. 2023)</td>
+<td>Documents hidden cues and group gaps in medical imaging models.</td>
+</tr>
+<tr>
+<td><strong>Breast cancer detection</strong> (Varun et al. 2024; Pattanayak et al. 2025; Anitha &amp; Datta 2023; Kanimozhi et al. 2025)</td>
+<td>Improves detection and segmentation accuracy.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="how-this-project-uses-them">How this project uses them<a class="anchor" href="#how-this-project-uses-them" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>It tests <strong>gradient reversal</strong> with its usual settings and with seven other settings.</li>
+<li>It asks the question Müller et al. (2024) did not: does a <strong>feature-level fix</strong> also fix the heat maps?</li>
+<li>It measures <strong>both</strong> problems for every method, because better heat maps may not mean a fairer model.</li>
+<li>It uses the <strong>worst-group test</strong> of Sagawa et al. (2020), with Group DRO and JTT as comparison methods.</li>
+</ul>
+<p>The full list of papers is on the <a href="../about/references.html">References</a> page.</p>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../research/background.html"><span class="dir">← Previous</span><span class="ttl">Research: Background</span></a><a class="next" href="../research/data.html"><span class="dir">Next →</span><span class="ttl">Research: Datasets</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#how-this-project-uses-them">How this project uses them</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+
+</body>
+</html>

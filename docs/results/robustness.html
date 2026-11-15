@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Robustness and INbreast · Mammography Shortcut Axes</title>
+<meta name="description" content="The comparison is repeated with different backbones, different density definitions and a second dataset. Each setting has its own baseline trained on the same runs.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("msa-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="doc" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" type="button" aria-label="Open the page list" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 32 32" fill="none" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path class="ax-a" d="M8 4v20"/><path class="ax-f" d="M8 24h20"/></svg><span>Mammography Shortcut Axes</span></a>
+  <div class="topbar-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="site-search" type="search" placeholder="Search the site" aria-label="Search the site" autocomplete="off" aria-controls="search-results">
+    <ul id="search-results" class="search-results" hidden></ul>
+  </div>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</header>
+<div class="backdrop"></div>
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="All pages"><div class="nav-group"><ul class="nav-list"><li><a href="../index.html">Home</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Research</p><ul class="nav-list"><li><a href="../research/index.html">Overview</a></li><li><a href="../research/background.html">Background</a></li><li><a href="../research/related-work.html">Related work</a></li><li><a href="../research/data.html">Datasets</a></li><li><a href="../research/method.html">Method</a></li><li><a href="../research/evaluation.html">Evaluation</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Results</p><ul class="nav-list"><li><a href="../results/index.html">Overview</a></li><li><a href="../results/main.html">Main comparison</a></li><li><a href="../results/sensitivity.html">Loss weights and shortcut strength</a></li><li><a href="../results/robustness.html" aria-current="page">Robustness and INbreast</a></li><li><a href="../results/baselines.html">Adversaries and published methods</a></li><li><a href="../results/calibration.html">Calibration and mask checks</a></li><li><a href="../results/discussion.html">Discussion</a></li></ul></div><div class="nav-group"><p class="nav-group-title">Code</p><ul class="nav-list"><li><a href="../code/index.html">Overview</a></li><li><a href="../code/getting-started.html">Getting started</a></li><li><a href="../code/repository.html">Repository structure</a></li><li><a href="../code/outputs.html">Output files</a></li><li><a href="../code/engineering-notes.html">Engineering notes</a></li></ul></div><div class="nav-group"><p class="nav-group-title">About</p><ul class="nav-list"><li><a href="../about/index.html">Authors</a></li><li><a href="../about/publication.html">Publication</a></li><li><a href="../about/glossary.html">Glossary</a></li><li><a href="../about/references.html">References</a></li></ul></div></nav>
+  <main id="main" class="content">
+    <article class="article">
+      <p class="eyebrow">Results</p>
+      <h1 id="robustness-and-inbreast">Robustness and INbreast</h1>
+<p>The comparison is repeated with different backbones, different density definitions and a second dataset. Each setting has its own baseline trained on the same runs.</p>
+<h2 id="all-settings">All settings<a class="anchor" href="#all-settings" aria-label="Link to this section">#</a></h2>
+<p>Each number is the change from that row's own baseline; * marks a 95% bootstrap interval that stays clear of zero. INbreast is the only row not on CBIS-DDSM. The main and INbreast rows have 13 runs, the others 5, and every row keeps the main penalty weights.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Runs</th>
+<th>Baseline gap</th>
+<th>DistCorr Δgap</th>
+<th>DistCorr ΔSAS</th>
+<th>CAM Δgap</th>
+<th>CAM ΔSAS</th>
+<th>Both Δgap</th>
+<th>Both ΔSAS</th>
+<th>Both ΔAUROC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main (ResNet-18, r ≈ 0.62)</td>
+<td class="num">13</td>
+<td class="num">0.357</td>
+<td class="num">−0.275*</td>
+<td class="num">+0.093*</td>
+<td class="num">−0.026</td>
+<td class="num">−0.540*</td>
+<td class="num">−0.292*</td>
+<td class="num">−0.536*</td>
+<td class="num">−0.022*</td>
+</tr>
+<tr>
+<td>No shortcut added (r ≈ 0.01)</td>
+<td class="num">5</td>
+<td class="num">0.026</td>
+<td class="num">+0.003</td>
+<td class="num">+0.047</td>
+<td class="num">−0.051</td>
+<td class="num">−0.623*</td>
+<td class="num">−0.034</td>
+<td class="num">−0.616*</td>
+<td class="num">+0.003</td>
+</tr>
+<tr>
+<td>Weak shortcut (r ≈ 0.30)</td>
+<td class="num">5</td>
+<td class="num">0.143</td>
+<td class="num">−0.143*</td>
+<td class="num">+0.005</td>
+<td class="num">+0.028</td>
+<td class="num">−0.554*</td>
+<td class="num">−0.179*</td>
+<td class="num">−0.551*</td>
+<td class="num">−0.021*</td>
+</tr>
+<tr>
+<td>Medium shortcut (r ≈ 0.47)</td>
+<td class="num">5</td>
+<td class="num">0.297</td>
+<td class="num">−0.287*</td>
+<td class="num">+0.085*</td>
+<td class="num">−0.032</td>
+<td class="num">−0.472*</td>
+<td class="num">−0.278*</td>
+<td class="num">−0.465*</td>
+<td class="num">−0.029*</td>
+</tr>
+<tr>
+<td>Equal cancer share, r ≈ 0.62</td>
+<td class="num">5</td>
+<td class="num">0.376</td>
+<td class="num">−0.345*</td>
+<td class="num">+0.095</td>
+<td class="num">+0.027</td>
+<td class="num">−0.446*</td>
+<td class="num">−0.332*</td>
+<td class="num">−0.447*</td>
+<td class="num">−0.048*</td>
+</tr>
+<tr>
+<td>DenseNet-121</td>
+<td class="num">5</td>
+<td class="num">0.364</td>
+<td class="num">−0.325*</td>
+<td class="num">+0.206*</td>
+<td class="num">−0.034</td>
+<td class="num">−0.492*</td>
+<td class="num">−0.319*</td>
+<td class="num">−0.484*</td>
+<td class="num">−0.080*</td>
+</tr>
+<tr>
+<td>ResNet-50</td>
+<td class="num">5</td>
+<td class="num">0.254</td>
+<td class="num">−0.168*</td>
+<td class="num">+0.025</td>
+<td class="num">+0.032</td>
+<td class="num">−0.584*</td>
+<td class="num">−0.141*</td>
+<td class="num">−0.574*</td>
+<td class="num">−0.037*</td>
+</tr>
+<tr>
+<td>Clinical density split (C/D)</td>
+<td class="num">5</td>
+<td class="num">0.430</td>
+<td class="num">−0.368*</td>
+<td class="num">−0.013</td>
+<td class="num">+0.079*</td>
+<td class="num">−0.558*</td>
+<td class="num">−0.370*</td>
+<td class="num">−0.556*</td>
+<td class="num">−0.026*</td>
+</tr>
+<tr>
+<td>Full A–D density in the penalty</td>
+<td class="num">5</td>
+<td class="num">0.386</td>
+<td class="num">−0.290*</td>
+<td class="num">+0.065</td>
+<td>—</td>
+<td>—</td>
+<td class="num">−0.268*</td>
+<td class="num">−0.534*</td>
+<td class="num">−0.007</td>
+</tr>
+<tr>
+<td>INbreast (digital)</td>
+<td class="num">13</td>
+<td class="num">0.189</td>
+<td class="num">−0.218*</td>
+<td class="num">−0.126*</td>
+<td class="num">+0.031</td>
+<td class="num">−0.439*</td>
+<td class="num">−0.171*</td>
+<td class="num">−0.443*</td>
+<td class="num">−0.015</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="cbis-ddsm-settings">CBIS-DDSM settings<a class="anchor" href="#cbis-ddsm-settings" aria-label="Link to this section">#</a></h2>
+<p>The same pattern appears in every CBIS-DDSM setting:</p>
+<ul>
+<li>distance correlation and both fixes <strong>shrink the gap</strong>;</li>
+<li>CAM regularization and both fixes <strong>cut off-breast attention</strong>;</li>
+<li>CAM regularization <strong>does not shrink the gap</strong>;</li>
+<li>distance correlation <strong>does not cut off-breast attention</strong>.</li>
+</ul>
+<p>Things to note:</p>
+<ul>
+<li><strong>ResNet-50:</strong> the effect is weaker; both fixes shrink the gap in 3 of 5 runs.</li>
+<li><strong>DenseNet-121:</strong> both fixes cost 0.080 AUROC, without retuning the weights.</li>
+<li><strong>Clinical split:</strong> CAM regularization slightly increases the gap (+0.079).</li>
+</ul>
+<h2 id="inbreast-digital-mammograms">INbreast (digital mammograms)<a class="anchor" href="#inbreast-digital-mammograms" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Distance correlation and both fixes again <strong>shrink the gap</strong> (−0.218 and −0.171, in 11 and 10 of 13 runs).</li>
+<li>CAM regularization again <strong>removes off-breast attention</strong> (−0.439) without shrinking the gap (+0.031).</li>
+<li>One difference: on INbreast, distance correlation <strong>also lowers SAS</strong> (−0.126).</li>
+</ul>
+<div class="callout warning">
+<p class="callout-title">Treat INbreast as supporting evidence</p>
+<p>On INbreast even the baseline struggles (AUROC 0.574, gap 0.189 ± 0.369), and each training set keeps only about 8 cancers. The direction matches CBIS-DDSM, but this is a small check, not a full repeat.</p>
+</div>
+    </article>
+    <nav class="pager" aria-label="Previous and next page"><a class="prev" href="../results/sensitivity.html"><span class="dir">← Previous</span><span class="ttl">Results: Loss weights and shortcut strength</span></a><a class="next" href="../results/baselines.html"><span class="dir">Next →</span><span class="ttl">Results: Adversaries and published methods</span></a></nav>
+  </main>
+  <aside class="toc" aria-label="On this page"><p class="toc-title">On this page</p><ul><li class="lvl-2"><a href="#all-settings">All settings</a></li><li class="lvl-2"><a href="#cbis-ddsm-settings">CBIS-DDSM settings</a></li><li class="lvl-2"><a href="#inbreast-digital-mammograms">INbreast (digital mammograms)</a></li></ul></aside>
+</div>
+<footer class="site-footer">Dhiraaj K V and Raghesh Krishnan K, Amrita Vishwa Vidyapeetham, November 2026</footer>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/site.js"></script>
+
+</body>
+</html>
